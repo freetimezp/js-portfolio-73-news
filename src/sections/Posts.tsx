@@ -7,11 +7,22 @@ import PostItemOne from '@/components/PostItemOne';
 import TrendingPost from '@/components/TrendingPost';
 import Preloader from '@/components/Preloader';
 
+const initialState = {
+    _id: '',
+    img: '',
+    category: '',
+    date: '',
+    title: '',
+    brief: '',
+    avatar: '',
+    author: ''
+};
+
 const Posts = () => {
     const router = useRouter();
 
     const [items, setItems] = useState<[] | any>([]);
-    const [item, setItem] = useState<{} | any>({});
+    const [item, setItem] = useState(initialState);
 
     const getItemsData = () => {
         fetch(`/api/postitems`)
