@@ -5,21 +5,12 @@ import Link from 'next/link';
 
 const PostItemOne = ({ large, item }: {
     large: boolean;
-    item: {
-        _id: string;
-        img: string;
-        category: string;
-        date: string;
-        title: string;
-        brief: string;
-        avatar: string;
-        author: string;
-    }
+    item: any;
 }) => {
     return (
         <div className={`post-entry-1 ${large ? 'lg' : undefined}`}>
-            <Link href={`postitems/${item._id}`}>
-                <img src={`/${item.img}`} alt="" className='img-fluid' />
+            <Link href={`/postitems/${item._id}`}>
+                <img src={`/${item.img}`} alt="item" className='img-fluid' />
             </Link>
 
             <div className="post-meta">

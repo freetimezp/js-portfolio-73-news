@@ -26,7 +26,7 @@ const Hero = () => {
 
     return (
         <section id="hero-slider" className='hero-slider'>
-            <div className="container-md" data-aos='fade-in'>
+            <div className="container-md" data-aos='fade-up'>
                 <div className="row">
                     <div className="col-12">
                         <Swiper
