@@ -5,6 +5,7 @@ import './posts.css';
 
 import PostItemOne from '@/components/PostItemOne';
 import TrendingPost from '@/components/TrendingPost';
+import Preloader from '@/components/Preloader';
 
 const Posts = () => {
     const router = useRouter();
@@ -46,32 +47,35 @@ const Posts = () => {
                         <div className="row g-5">
                             <div className="col-lg-4 border-start custom-border">
                                 {items && items.length > 0
-                                    && items
+                                    ? items
                                         .filter((item: { trending: boolean; top: boolean; }) => !item.trending && !item.top)
                                         .slice(0, 3)
                                         .map((item: any, index: number) => (
                                             <PostItemOne key={index} large={false} item={item} />
-                                        ))}
+                                        ))
+                                    : <Preloader />}
                             </div>
                             <div className="col-lg-4 border-start custom-border">
                                 {items && items.length > 0
-                                    && items
+                                    ? items
                                         .filter((item: { trending: boolean; top: boolean; }) => !item.trending && !item.top)
                                         .slice(3, 6)
                                         .map((item: any, index: number) => (
                                             <PostItemOne key={index} large={false} item={item} />
-                                        ))}
+                                        ))
+                                    : <Preloader />}
                             </div>
                             <div className="col-lg-4">
                                 <div className="trending">
                                     <h3>Trending</h3>
                                     <ul className="trending-post">
-                                        {items && items.length > 0 && items
-                                            .filter((item: { trending: boolean; }) => item.trending)
-                                            .map((item: any, index: number) => (
-                                                <TrendingPost key={index} item={item} index={index} />
-                                            ))
-                                        }
+                                        {items && items.length > 0
+                                            ? items
+                                                .filter((item: { trending: boolean; }) => item.trending)
+                                                .map((item: any, index: number) => (
+                                                    <TrendingPost key={index} item={item} index={index} />
+                                                ))
+                                            : <Preloader />}
                                     </ul>
                                 </div>
                             </div>
