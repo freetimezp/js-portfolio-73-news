@@ -7,7 +7,7 @@ import PostItemOne from '@/components/PostItemOne';
 import TrendingPost from '@/components/TrendingPost';
 import Preloader from '@/components/Preloader';
 
-const initialState = {
+export const initialState = {
     _id: '',
     img: '',
     category: '',
