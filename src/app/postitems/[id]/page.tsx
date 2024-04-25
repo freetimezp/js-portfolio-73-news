@@ -5,9 +5,13 @@ import './style.css';
 import Preloader from '@/components/Preloader';
 import { initialState } from '@/sections/Posts';
 import SidePostItem from '@/components/SidePostItem';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const PostItem = ({ params }: { params: { id: string } }) => {
     const id: string = params.id;
+
+    const router = useRouter();
 
     const [item, setItem] = useState(initialState);
     const [items, setItems] = useState<[] | any>([]);
@@ -47,6 +51,26 @@ const PostItem = ({ params }: { params: { id: string } }) => {
         getSinglePostData();
         getItemsData();
     }, []);
+
+    const handleDeletePost = async (id: string) => {
+        try {
+            const response = await fetch(`/api/postitems/${id}`, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const result = response.status;
+
+            if (result === 200) {
+                console.log("Deleted success..", result);
+                router.push(`/postitems`);
+            }
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    };
 
     return (
         <main id='main'>
@@ -125,6 +149,15 @@ const PostItem = ({ params }: { params: { id: string } }) => {
                                         suscipit? Quasi hic ipsam obcaecati voluptatem nobis consectetur
                                         quis quos libero fuga. Modi.
                                     </p>
+
+                                    <div className="d-flex justify-content-center gap-4">
+                                        <a className='btn btn-primary' onClick={() => handleDeletePost(id)}>
+                                            <i className="bi bi-trash"></i> Delete
+                                        </a>
+                                        <Link href={`/createpostitems/${id}`} className="btn btn-primary">
+                                            <i className="bi bi-pen"></i> Edit
+                                        </Link>
+                                    </div>
                                 </div>
                             ) : <Preloader />}
                         </div>
