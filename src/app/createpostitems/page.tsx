@@ -1,16 +1,16 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 
-const CreatePostItems = () => {
-    const initialState = {
-        title: '',
-        img: '',
-        category: '',
-        author: '',
-        brief: '',
-        validate: ''
-    };
+export const initialState = {
+    title: '',
+    img: '',
+    category: '',
+    author: '',
+    brief: '',
+    validate: ''
+};
 
+const CreatePostItems = () => {
     const [text, setText] = useState(initialState);
 
     const handleTextChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
