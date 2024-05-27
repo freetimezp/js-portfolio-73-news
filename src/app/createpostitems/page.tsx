@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 
-export const initialState = {
+const initialState = {
     title: '',
     img: '',
     category: '',
@@ -40,11 +40,11 @@ const CreatePostItems = () => {
             const result = response.status;
             if (result === 201) {
                 setText({ ...text, validate: 'success' });
-                console.log("Success", result);
+                //console.log("Success", result);
             }
         } catch (error) {
             setText({ ...text, validate: 'error' });
-            console.log("Error", error);
+            //console.log("Error", error);
         }
     };
 

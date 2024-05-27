@@ -1,6 +1,14 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { initialState } from '../page';
+
+const initialState = {
+    title: '',
+    img: '',
+    category: '',
+    author: '',
+    brief: '',
+    validate: ''
+};
 
 const EditPostItem = ({ params }: { params: { id: string } }) => {
     const id = params.id;
@@ -41,11 +49,11 @@ const EditPostItem = ({ params }: { params: { id: string } }) => {
             const result = response.status;
             if (result === 200) {
                 setText({ ...text, validate: 'success' });
-                console.log("Success", result);
+                //console.log("Success", result);
             }
         } catch (error) {
             setText({ ...text, validate: 'error' });
-            console.log("Error", error);
+            //console.log("Error", error);
         }
     };
 
